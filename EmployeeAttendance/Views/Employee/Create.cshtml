@@ -1,0 +1,101 @@
+﻿@model EmployeeAttendance.Models.Employee 
+<div class="container">
+
+    <form method="post" class="row" asp-action="Create">
+        <div class="mb-3">
+            <label asp-for="Name">Name</label>
+            <input asp-for="Name" class="form-control" data-bind="value:Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Age">Age</label>
+            <input asp-for="Age" class="form-control" data-bind="value:Age" />
+            <span asp-validation-for="Age" class="text-danger"></span>
+
+
+        </div>
+        <div class="mb-3">
+            <label asp-for="DateOfBirth">DateOfBirth</label>
+            <input asp-for="DateOfBirth" class="form-control" data-bind="value:DateOfBirth" />
+            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+
+
+        </div>
+        <div class="mb-3">
+            <label asp-for="Salary">Salary</label>
+            <input asp-for="Salary" class="form-control" data-bind="value:Salary" />
+            <span asp-validation-for="Salary" class="text-danger"></span>
+
+
+        </div>
+        <div class="mb-3">
+            <select asp-for="Gender" class="form-select" data-bind="value:Gender">
+                <option value="">--Select Gender--</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+            <span asp-validation-for="Gender" class="text-danger"></span>
+
+        </div>
+        <div class="mb-3">
+            <button type="button" class="btn btn-primary" data-bind="click:togglePreview,text:togglePreviewText">Preview Data</button>
+            <button type="submit" class="btn btn-primary">Create Employee</button>
+            
+
+
+        </div>
+
+    </form>
+    <div data-bind="visible:IsPreviewAvailable" class="card row">
+        <div class="card-body">
+            <p>Name:<span class="card-text" data-bind="text:Name"></span></p>
+            <p>Age:<span class="card-text" data-bind="text:Age"></span></p>
+            <p>Date Of Birth:<span class="card-text" data-bind="text:DateOfBirth"></span></p>
+            <p>Salary:<span class="card-text" data-bind="text:Salary"></span></p>
+            <p>Gender:<span class="card-text" data-bind="text:Gender"></span></p>
+        </div>
+    </div>
+
+
+</div>
+@section Scripts{
+    <script>
+
+        function EmployeeViewModel()
+        {
+        var self = this;
+        self.Name = ko.observable('');
+        self.Age = ko.observable();
+        self.DateOfBirth = ko.observable();
+        self.Salary = ko.observable('');
+        self.Gender = ko.observable('');
+        self.IsPreviewAvailable = ko.observable(false);
+        self.togglePreview = function()
+        {
+           self.IsPreviewAvailable(!self.IsPreviewAvailable());
+        }
+        self.togglePreviewText = ko.computed(function()
+        {
+           return self.IsPreviewAvailable()? "Hide Preview":"Show Preview";
+        })
+       
+        }
+        
+         ko.applyBindings(new EmployeeViewModel());
+        $(document).ready(function(){
+            var successMessage = @Html.Raw(Json.Serialize(TempData["Success"] ?? ""));
+            var failureMessage = @Html.Raw(Json.Serialize(TempData["Failure"] ?? ""));
+
+            if(successMessage) {
+                toastr.success(successMessage, "Success");
+            }
+            else if(failureMessage) {
+                toastr.error(failureMessage, "Error");
+            }
+        });
+      
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

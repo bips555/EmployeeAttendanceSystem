@@ -3,15 +3,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmployeeAttendance.Models
 {
-    public class EmployeeAttendance
+    public class EmployeeAttendanceRecord
     {
         public int Id { get; set; }
         
         [ValidateNever]
         public int EmployeeId { get; set; }
-       
+
         [ForeignKey(nameof(EmployeeId))]    
-        public Employee Employee { get; set; }
+        public Employee? Employee { get; set; }
         public bool IsPresent { get; set; }
+        public DateTime AttendanceDate { get; set; } = DateTime.Now;
     }
 }

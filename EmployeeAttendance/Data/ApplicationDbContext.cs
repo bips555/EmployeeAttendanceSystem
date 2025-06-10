@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EmployeeAttendance.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeAttendance.Data
 {
@@ -8,6 +9,7 @@ namespace EmployeeAttendance.Data
         {
 
         }
-        DbSet<EmployeeAttendance> EmployeeAttendances { get; set; }
+       public DbSet<Employee> Employees { get; set; }
+      public DbSet<EmployeeAttendanceRecord> EmployeeAttendanceRecords { get; set; }
     }
 }
