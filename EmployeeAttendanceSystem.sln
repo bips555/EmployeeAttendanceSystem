@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.36105.23 d17.13
+VisualStudioVersion = 17.13.36105.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeAttendance", "EmployeeAttendance\EmployeeAttendance.csproj", "{2385C476-6BF7-439F-9ECD-B709FCB14D5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeAttendance.Utility", "EmployeeAttendance.Utility\EmployeeAttendance.Utility.csproj", "{3D366208-022A-4596-91D1-5865E7BDD2EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{2385C476-6BF7-439F-9ECD-B709FCB14D5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2385C476-6BF7-439F-9ECD-B709FCB14D5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2385C476-6BF7-439F-9ECD-B709FCB14D5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D366208-022A-4596-91D1-5865E7BDD2EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D366208-022A-4596-91D1-5865E7BDD2EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D366208-022A-4596-91D1-5865E7BDD2EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D366208-022A-4596-91D1-5865E7BDD2EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

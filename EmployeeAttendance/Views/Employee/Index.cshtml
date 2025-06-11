@@ -1,35 +1,42 @@
 ﻿@model IEnumerable<EmployeeAttendance.Models.Employee>;
 <div>
-    
-        <table class="table table-bordered table-striped">
-            <thead>
-                <tr>        
-                    <th> Name </th>
-                    <th> Age</th>
-                    <th>Salary</th>
-                    <th>Gender</th>
-                    <th>DateOfBirth</th>
-                  
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>        
+                <th> Name </th>
+                <th>Email</th>
+                <th> Age</th>
+                <th>Salary</th>
+                <th>Gender</th>
+                <th>DateOfBirth</th>
+
             </tr>
         </thead>
-      
+
         @foreach(Employee employee in Model)
         {
             <tr>
                 <td>@employee.Name</td>
-            <td>@employee.Age</td>
-            <td>@employee.Salary</td>
-            <td>@employee.Gender</td>
-            <td>@employee.DateOfBirth</td>
-            <td><a asp-action="Edit" asp-controller="Employee" asp-route-Id = "@employee.Id">Edit</a></td>
-                <td><a asp-action="Delete" asp-controller="Employee" asp-route-Id="@employee.Id">Delete</a></td>
-
-        </tr>
+                <td>@employee.User?.Email</td>
+                <td>@employee.Age</td>
+                <td>@employee.Salary</td>
+                <td>@employee.Gender</td>
+                <td>@employee.DateOfBirth</td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <td><a asp-action="Edit" asp-controller="Employee" asp-route-Id = "@employee.Id" class="btn btn-primary mx-auto align-items-center">Edit</a></td>
+                    <td><a asp-action="Delete" asp-controller="Employee" asp-route-Id="@employee.Id" class="btn btn-danger mx-auto">Delete</a></td>
+                }
+            </tr>
         }
     </table>
-    <div class="container">
-        <a class="btn btn-primary" asp-action="Create" asp-controller="Employee">Create Employee</a>
-    </div>
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="container">
+            <a class="btn btn-success" asp-action="Create" asp-controller="Employee">Create Employee</a>
+        </div>
+    }
 </div>
 @section Scripts{
     <script>
@@ -38,6 +45,7 @@
             var failureMessage = '@TempData["Failure"]';
             var successUpdateMessage = '@TempData["UpdateSuccess"]';
             var deleteSuccess = '@TempData["DeleteSuccess"]';
+            var deleteFailure = '@TempData["DeleteFailure"]';
             if(successMessage) {
                 toastr.success(successMessage,"Success");
             } else if (failureMessage) {
@@ -50,6 +58,10 @@
             else if (deleteSuccess)
             {
                 toastr.success(deleteSuccess,"Success");
+            }
+            else if(deleteFailure)
+            {
+                toastr.error(deleteFailure,"Error");
             }
         });
         

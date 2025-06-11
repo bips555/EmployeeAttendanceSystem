@@ -1,12 +1,15 @@
-﻿@model EmployeeAttendance.Models.Employee 
+﻿@model EmployeeAttendance.Models.Employee
+
 <div class="container">
 
     <form method="post" class="row" asp-action="Create">
+
         <div class="mb-3">
             <label asp-for="Name">Name</label>
             <input asp-for="Name" class="form-control" data-bind="value:Name" />
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
+
         <div class="mb-3">
             <label asp-for="Age">Age</label>
             <input asp-for="Age" class="form-control" data-bind="value:Age" />
@@ -37,14 +40,14 @@
             <span asp-validation-for="Gender" class="text-danger"></span>
 
         </div>
-        <div class="mb-3">
-            <button type="button" class="btn btn-primary" data-bind="click:togglePreview,text:togglePreviewText">Preview Data</button>
+       
+            <div class="mb-3">
+                <button type="button" class="btn btn-primary" data-bind="click:togglePreview,text:togglePreviewText">Preview Data</button>
             <button type="submit" class="btn btn-primary">Create Employee</button>
             
 
-
         </div>
-
+        
     </form>
     <div data-bind="visible:IsPreviewAvailable" class="card row">
         <div class="card-body">
@@ -64,7 +67,7 @@
         function EmployeeViewModel()
         {
         var self = this;
-        self.Name = ko.observable('');
+        self.Name = ko.observable();
         self.Age = ko.observable();
         self.DateOfBirth = ko.observable();
         self.Salary = ko.observable('');
