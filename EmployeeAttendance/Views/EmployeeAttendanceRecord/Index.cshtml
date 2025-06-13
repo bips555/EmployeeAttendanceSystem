@@ -1,0 +1,51 @@
+﻿<h2>Attendance Records</h2>
+@model List<EmployeeAttendanceRecord>
+@{
+    var date = DateTime.Now.Date;
+}
+
+<div class="container"> 
+    @if (Model.Count <= 0)
+    {
+        <p class="text-center mt-5">No records</p>
+    }
+    else
+    {
+    <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Attendance Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var record in Model)
+           {
+                    <tr>
+                    <td>@record.Employee.Name</td>
+                    <td>@record.AttendanceDate.ToString("dd MMMM yyyy")</td>
+                        <td>@(record.IsPresent ? "Present" : "Absent")</td>
+                    </tr>
+            }
+        </tbody>
+    </table>
+    }
+    
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function()
+        {
+                    var attendanceMessage = '@TempData["AttendanceSuccess"]';
+                    var attendanceFailureMessage = '@TempData["AttendanceFailure"]';
+                    if(attendanceMessage){
+            toastr.success(attendanceMessage,"Success");
+                    }
+            else if (attendanceFailureMessage)
+{
+    toastr.error(attendanceFailureMessage,"Error");
+}
+        })
+    </script>
+}

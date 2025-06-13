@@ -1,0 +1,43 @@
+﻿@model List<EmployeeAttendance.Models.ViewModels.EmployeeAttendanceRecordsVM>
+@{
+    var today = DateTime.Now.ToString("yyyy-MM-dd");
+    var attendanceDate = ViewBag.AttendanceDate ?? today;
+}
+<h2>
+    Take Attendance - @DateTime.Parse(attendanceDate).ToString("dd MMMM yyyy")
+</h2>
+<div class="container">
+    <form method="post" action="TakeAttendance">
+        <input type="hidden" name="AttendanceDate" value="@attendanceDate" />
+        <table class="table">
+            <thead>
+                <tr>
+<th>
+    Employee Name
+</th>
+<th>
+   Present
+</th>
+</tr>
+            </thead>
+            <tbody>
+@for(int i=0;i<Model.Count;i++)
+                {
+                    <tr>
+<td>
+    @Model[i].EmployeeName
+    <input type="hidden" asp-for="@Model[i].EmployeeName"/>
+    <input type="hidden" asp-for="@Model[i].EmployeeId" />
+
+</td>
+<td>
+    <input type="checkbox" asp-for="@Model[i].IsPresent"/>
+</td>
+</tr>
+                }
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">Take Attendance </button>
+    </form>
+</div>
+ 

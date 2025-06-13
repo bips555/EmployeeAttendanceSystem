@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeAttendance.Controllers
 {
-    [Authorize(Roles ="Admin,Employee")]
+    [Authorize]
     public class EmployeeController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -45,12 +45,20 @@ namespace EmployeeAttendance.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable<Employee> employees = _context.Employees.Include(e=>e.User).ToList();
-            if(employees!= null)
+            if (!User.Identity.IsAuthenticated)
             {
-                return View(employees);
+
+                return RedirectToPage("/Identity/Account/Login");
             }
-            return View();
+            else
+            {
+                IEnumerable<Employee> employees = _context.Employees.Include(e => e.User).ToList();
+                
+                    return View(employees);
+                
+
+               
+            }
         }
         [Authorize(Roles = "Admin")]
 
