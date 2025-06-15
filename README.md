@@ -188,25 +188,6 @@ COPY ./publish .
 ENTRYPOINT ["dotnet", "EmployeeAttendance.dll"]
 ```
 
-## 🧪 Testing
-
-Run unit tests (if available):
-```bash
-dotnet test
-```
-
-## 📈 Future Enhancements
-
-- [ ] **Employee Self-Service** - Allow employees to mark their own attendance
-- [ ] **Leave Management** - Request and approve leave applications
-- [ ] **Advanced Reporting** - Charts, graphs, and detailed analytics
-- [ ] **Email Notifications** - Automated attendance alerts and reminders
-- [ ] **Photo Upload** - Employee profile pictures
-- [ ] **Mobile App** - React Native or Flutter mobile application
-- [ ] **Biometric Integration** - Fingerprint or face recognition attendance
-- [ ] **Shift Management** - Multiple shift support and scheduling
-- [ ] **Payroll Integration** - Connect attendance with payroll systems
-- [ ] **API Development** - RESTful APIs for third-party integrations
 
 ## 🤝 Contributing
 
@@ -228,13 +209,6 @@ If you encounter any issues or have questions:
 - Email: support@yourcompany.com
 - Documentation: [Wiki](https://github.com/your-username/employee-attendance-system/wiki)
 
-## 🙏 Acknowledgments
 
-- ASP.NET Core team for the excellent framework
-- Bootstrap team for the UI components
-- KnockoutJS community for the MVVM framework
-- All contributors who helped make this project better
-
----
 
 **Made with ❤️ using ASP.NET Core**
